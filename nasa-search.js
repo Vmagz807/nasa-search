@@ -5,6 +5,7 @@ export class NasaSearch extends LitElement {
   static get properties() {
     return {
       title: { type: String },
+      alt: { type: String},
       loading: { type: Boolean, reflect: true },
       items: { type: Array, },
       value: { type: String },
@@ -48,12 +49,17 @@ export class NasaSearch extends LitElement {
         line-height: 40px;
         width: 100%;
       }
+
+      a{
+        text-decoration: none;
+      }
     `;
   }
 
   constructor() {
     super();
     this.value = null;
+    this.alt = '';
     this.title = '';
     this.loading = false;
     this.items = [];
@@ -75,6 +81,7 @@ export class NasaSearch extends LitElement {
         <nasa-image
           source="${item.links[0].href}"
           title="${item.data[0].title}"
+          alt="${this.alt}"
         ></nasa-image>
       </a>
       `)}
